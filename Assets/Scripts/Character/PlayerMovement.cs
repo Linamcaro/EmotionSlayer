@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,26 +6,26 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D myRigidbody;
-    public float movementForce = 2;
-    // Start is called before the first frame update
+    public int jumpForce = 10;
     void Start()
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
-        myRigidbody.AddForce(transform.right * movementForce * Input.GetAxis("Horizontal"), ForceMode2D.Force);
+        const int jumpForce = 5;        // How strong is the jump?
+        const int movementForce = 3;    // How strong is the movement?
+        if (Input.GetKeyDown(KeyCode.UpArrow) == true)
+        {
+            myRigidbody.velocity = Vector2.up * jumpForce;
+        }
         
         if (Input.GetKeyDown(KeyCode.Space) == true)
         {
-            myRigidbody.velocity = Vector2.up * 10;
+            myRigidbody.velocity = Vector2.up * jumpForce;
         }
         
-        if (Input.GetKeyDown(KeyCode.DownArrow) == true)
-        {
-            myRigidbody.velocity = Vector2.down * 10;
-        }
+        myRigidbody.AddForce(transform.right * movementForce * Input.GetAxis("Horizontal"), ForceMode2D.Force);
     }
 }
