@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("LAYERS")]
-    [SerializeField] LayerMask groundLayer;
-
-    /*[Header("INPUT")]
-    [SerializeField] private bool SnapInput;
-    [SerializeField] private float VerticalDeadZoneThreshold;
-    [SerializeField] private float HorizontalDeadZoneThreshold;*/
 
     [Header("MOVEMENT")]
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float grounderDistance = 0.2f;
+    [SerializeField] private float grounderDistance = 0.05f;
     [SerializeField] private float maxSpeed = 14;
     [SerializeField] private float acceleration = 120;
-    [SerializeField] private float groundDeceleration = 60;
+    [SerializeField] private float groundDeceleration = 40;
     [SerializeField] private float airDeceleration = 30;
     [SerializeField] private float jumpPower = 36;
     [SerializeField] private float maxFallSpeed = 40;
@@ -28,11 +20,15 @@ public class PlayerController : MonoBehaviour
     private FrameInput frameInput;
     private Rigidbody2D playerRb;
     private Vector2 playerVelocity;
+    private CapsuleCollider2D _col;
+    [SerializeField] private bool isGrounded;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        _col = GetComponent<CapsuleCollider2D>();
+
     }
 
     // Update is called once per frame
@@ -42,16 +38,13 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //HandleGravity();
+
+        CheckCollisions();
         Jump();
         HandleDirection();
+        HandleGravity();
         ApplyMovement();
-        
-    }
 
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, grounderDistance, groundLayer);
     }
 
     private void GetInput()
@@ -63,37 +56,45 @@ public class PlayerController : MonoBehaviour
             move = PlayerControls.Instance.GetPlayerMovement()
 
         };
+
     }
+
+    private void CheckCollisions()
+    {
+        // Ground and Ceiling
+        bool groundHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.down, grounderDistance);
+        bool ceilingHit = Physics2D.CapsuleCast(_col.bounds.center, _col.size, _col.direction, 0, Vector2.up, grounderDistance);
+
+        // Hit a Ceiling
+        if (ceilingHit) playerVelocity.y = Mathf.Min(0, playerVelocity.y);
+
+        // Landed on the Ground
+        if(!isGrounded && groundHit)
+        {
+            isGrounded = true;
+        }
+        else if (isGrounded && !groundHit)
+        {
+            isGrounded = false;
+        }
+
+    }
+
 
     private void Jump()
     {
-        if (IsGrounded() && frameInput.jump)
+        if (isGrounded && frameInput.jump)
         {
             playerVelocity.y = jumpPower;
-
         }
 
-    }
-    private void HandleGravity()
-    {
-        if (IsGrounded() && playerVelocity.y <= 0f)
-        {
-            playerVelocity.y = groundingForce;
-        }
-        else
-        {
-            var inAirGravity = fallAcceleration;
-            //if (playerVelocity.y > 0) inAirGravity *= jumpEndEarlyGravityModifier;
-            playerVelocity.y = Mathf.MoveTowards(playerVelocity.y, -maxFallSpeed, inAirGravity * Time.fixedDeltaTime);
-        }
-    }
-
+     }
 
     private void HandleDirection()
     {
         if (frameInput.move.x == 0)
         {
-            var deceleration = IsGrounded() ? groundDeceleration : airDeceleration;
+            var deceleration = isGrounded ? groundDeceleration : airDeceleration;
             playerVelocity.x = Mathf.MoveTowards(playerVelocity.x, 0, deceleration * Time.fixedDeltaTime);
         }
         else
@@ -102,10 +103,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleGravity()
+    {
+        if (isGrounded && playerVelocity.y <= 0f)
+        {
+            playerVelocity.y = groundingForce;
+        }
+        else
+        {
+            var inAirGravity = fallAcceleration;
+            if (playerVelocity.y > 0) inAirGravity *= jumpEndEarlyGravityModifier;
+            playerVelocity.y = Mathf.MoveTowards(playerVelocity.y, -maxFallSpeed, inAirGravity * Time.fixedDeltaTime);
+        }
+    }
+
     private void ApplyMovement() => playerRb.velocity = playerVelocity;
 
 }
-
 
 public struct FrameInput
 {

@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3235416054721425705, guid: 24bc6975cd1055f4286461f881b6affe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.45
+      value: -2.95
       objectReference: {fileID: 0}
     - target: {fileID: 3235416054721425705, guid: 24bc6975cd1055f4286461f881b6affe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -532,7 +532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6900644122086393320, guid: 24bc6975cd1055f4286461f881b6affe, type: 3}
       propertyPath: grounderDistance
-      value: 0.2
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
