@@ -25,6 +25,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetFloat("speed", Mathf.Abs(playerRb.velocity.x));
         animator.SetBool("jump", !playerController.IsGrounded());
+        animator.SetBool("attack", playerController.playerAttacked());
 
     }
 

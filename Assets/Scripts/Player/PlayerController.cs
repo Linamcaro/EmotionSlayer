@@ -30,8 +30,7 @@ public class PlayerController : MonoBehaviour
     private FrameInput frameInput;
 
    
-    private bool jumped;
-
+ 
     // Start is called before the first frame update
     void Awake()
     {
@@ -72,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         if (frameInput.jump && IsGrounded())
         {
-            jumped = true;
+    
             playerVelocity.y = jumpPower;
         }
 
@@ -89,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded() && playerVelocity.y <= 0f)
         {
             playerVelocity.y = groundingForce;
-            jumped = false;
+            
         }
         else
         {
@@ -157,10 +156,10 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public bool playerJumped()
+    public bool playerAttacked()
     {
-        return jumped;
-    }    
+        return frameInput.fire;
+    }
   
 }
 
