@@ -29,7 +29,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     private FrameInput frameInput;
 
-   
+    //Events
+    public EventHandler playerJumped;
+    public EventHandler isRunning;
+    public EventHandler playerFired;
  
     // Start is called before the first frame update
     void Awake()
@@ -62,6 +65,11 @@ public class PlayerController : MonoBehaviour
             fire = PlayerControls.Instance.PlayerFired()
         };
 
+        if(frameInput.fire)
+        {
+            playerFired?.Invoke(this, EventArgs.Empty);
+        }
+
     }
 
     /// <summary>
@@ -73,6 +81,9 @@ public class PlayerController : MonoBehaviour
         {
     
             playerVelocity.y = jumpPower;
+
+            playerJumped?.Invoke(this, EventArgs.Empty);
+
         }
 
         if(!IsGrounded() && HitCeiling()) 
@@ -110,6 +121,8 @@ public class PlayerController : MonoBehaviour
         else if (IsGrounded() && !HitCeiling())
         {
             playerVelocity.x = Mathf.MoveTowards(playerVelocity.x, frameInput.move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
+
+            isRunning?.Invoke(this, EventArgs.Empty);
             
         }
 
@@ -124,6 +137,7 @@ public class PlayerController : MonoBehaviour
         }
 
         playerRb.velocity = playerVelocity;
+
     }
 
     /// <summary>
@@ -156,8 +170,9 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public bool playerAttacked()
+    public bool PlayerAttacked()
     {
+        
         return frameInput.fire;
     }
   
