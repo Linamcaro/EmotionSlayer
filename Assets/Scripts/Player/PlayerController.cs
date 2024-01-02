@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 playerVelocity;
     private Rigidbody2D playerRb;
     private FrameInput frameInput;
+
+   
+    private bool jumped;
 
     // Start is called before the first frame update
     void Awake()
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         if (frameInput.jump && IsGrounded())
         {
+            jumped = true;
             playerVelocity.y = jumpPower;
         }
 
@@ -84,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded() && playerVelocity.y <= 0f)
         {
             playerVelocity.y = groundingForce;
+            jumped = false;
         }
         else
         {
@@ -105,6 +111,7 @@ public class PlayerController : MonoBehaviour
         else if (IsGrounded() && !HitCeiling())
         {
             playerVelocity.x = Mathf.MoveTowards(playerVelocity.x, frameInput.move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
+            
         }
 
 
@@ -124,7 +131,7 @@ public class PlayerController : MonoBehaviour
     /// Check if player is on the ground
     /// </summary>
     /// <returns></returns>
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);  
 
@@ -149,6 +156,11 @@ public class PlayerController : MonoBehaviour
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
+
+    public bool playerJumped()
+    {
+        return jumped;
+    }    
   
 }
 
