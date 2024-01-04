@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController1 : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     public Transform target; // The player's transform
 
@@ -14,7 +14,7 @@ public class EnemyController1 : MonoBehaviour
     [SerializeField] public float attackDamage = 10f;
 
     [Header("MOVEMENT")]
-    [SerializeField] public float moveSpeed = 8f; // The speed at which the enemy moves   
+    [SerializeField] public float moveSpeed = 3f; // The speed at which the enemy moves   
 
     private Rigidbody2D rb;
 
