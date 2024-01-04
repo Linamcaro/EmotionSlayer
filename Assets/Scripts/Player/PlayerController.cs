@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     private FrameInput frameInput;
 
+    //Events
+    public EventHandler playerJumped;
+    public EventHandler isRunning;
+    
+ 
     // Start is called before the first frame update
     void Awake()
     {
@@ -56,9 +62,8 @@ public class PlayerController : MonoBehaviour
         {
             move = PlayerControls.Instance.GetPlayerMovement(),
             jump = PlayerControls.Instance.PlayerJumped(),
-            fire = PlayerControls.Instance.PlayerFired()
+            
         };
-
     }
 
     /// <summary>
@@ -68,7 +73,11 @@ public class PlayerController : MonoBehaviour
     {
         if (frameInput.jump && IsGrounded())
         {
+    
             playerVelocity.y = jumpPower;
+
+            playerJumped?.Invoke(this, EventArgs.Empty);
+
         }
 
         if(!IsGrounded() && HitCeiling()) 
@@ -84,6 +93,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded() && playerVelocity.y <= 0f)
         {
             playerVelocity.y = groundingForce;
+            
         }
         else
         {
@@ -105,6 +115,9 @@ public class PlayerController : MonoBehaviour
         else if (IsGrounded() && !HitCeiling())
         {
             playerVelocity.x = Mathf.MoveTowards(playerVelocity.x, frameInput.move.x * maxSpeed, acceleration * Time.fixedDeltaTime);
+
+            isRunning?.Invoke(this, EventArgs.Empty);
+            
         }
 
 
@@ -118,13 +131,14 @@ public class PlayerController : MonoBehaviour
         }
 
         playerRb.velocity = playerVelocity;
+
     }
 
     /// <summary>
     /// Check if player is on the ground
     /// </summary>
     /// <returns></returns>
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);  
 
@@ -149,12 +163,23 @@ public class PlayerController : MonoBehaviour
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
-  
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null)
+            return;
+        if (ceilingCheck == null)
+            return;
+
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(ceilingCheck.position, ceilingCheckRadius);
+       
+    }
+
 }
 
 public struct FrameInput
 {
    public bool jump;
-   public bool fire;
    public Vector2 move;
 }

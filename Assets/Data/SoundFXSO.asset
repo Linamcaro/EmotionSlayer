@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc690a4978c9f241ba996d54544980e, type: 3}
+  m_Name: SoundFXSO
+  m_EditorClassIdentifier: 
+  footsteps: {fileID: 8300000, guid: a750ec80ba208b94292f0a9f817170d1, type: 3}
+  jump: {fileID: 8300000, guid: 3d4d6f55e91b4c646a2caae91cadbef0, type: 3}
+  monsterDeath: {fileID: 8300000, guid: 38f048f411e07da4ab99524525b58b00, type: 3}
+  monsterRoar: {fileID: 8300000, guid: 4e54c1983fcc5e948a4dc2c321327ec7, type: 3}
+  orbPickup: {fileID: 8300000, guid: a9b01a26239562c409c8f1dc7b073634, type: 3}
+  swordSlash: {fileID: 8300000, guid: 4b47bfcdc21b7484099a2b4b5247825b, type: 3}
