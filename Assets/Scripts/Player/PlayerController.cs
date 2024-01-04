@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     //Events
     public EventHandler playerJumped;
     public EventHandler isRunning;
-    public EventHandler playerFired;
+    
  
     // Start is called before the first frame update
     void Awake()
@@ -62,14 +62,8 @@ public class PlayerController : MonoBehaviour
         {
             move = PlayerControls.Instance.GetPlayerMovement(),
             jump = PlayerControls.Instance.PlayerJumped(),
-            fire = PlayerControls.Instance.PlayerFired()
+            
         };
-
-        if(frameInput.fire)
-        {
-            playerFired?.Invoke(this, EventArgs.Empty);
-        }
-
     }
 
     /// <summary>
@@ -170,17 +164,22 @@ public class PlayerController : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public bool PlayerAttacked()
+    private void OnDrawGizmosSelected()
     {
-        
-        return frameInput.fire;
+        if (groundCheck == null)
+            return;
+        if (ceilingCheck == null)
+            return;
+
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(ceilingCheck.position, ceilingCheckRadius);
+       
     }
-  
+
 }
 
 public struct FrameInput
 {
    public bool jump;
-   public bool fire;
    public Vector2 move;
 }

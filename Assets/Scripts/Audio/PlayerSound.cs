@@ -7,17 +7,19 @@ public class PlayerSound : MonoBehaviour
 {
 
     private PlayerController playerController;
+    private PlayerCombat playerCombat;
 
    
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        playerCombat = GetComponent<PlayerCombat>();
     }
 
     private void Start()
     {
         playerController.playerJumped += playerSound_OnPlayerJumped;
-        playerController.playerFired += playerSound_OnPlayerAttacked;
+        playerCombat.playerFired += playerSound_OnPlayerAttacked;
         playerController.isRunning += playerSound_OnPlayerRunning;
     }
 
