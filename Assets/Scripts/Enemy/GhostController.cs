@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // using EnemyController;
 
-public class GhostController : EnemyController
+public class Ghost : Enemy
 {
 
 }
