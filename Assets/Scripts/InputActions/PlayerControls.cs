@@ -20,7 +20,15 @@ public class PlayerControls : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _instance = this;
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+        }
 
         inputActions = new InputActions();
     }
@@ -31,7 +39,7 @@ public class PlayerControls : MonoBehaviour
 
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         inputActions.Disable();
     }

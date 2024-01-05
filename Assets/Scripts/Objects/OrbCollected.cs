@@ -38,7 +38,7 @@ public class OrbCollected : MonoBehaviour
         ResetScore();
     }
 
-    private void setScore()
+    private void SetScore()
     {
         orbsCollected = 0;
     }
@@ -65,7 +65,7 @@ public class OrbCollected : MonoBehaviour
     public void ResetScore()
     {
         gameIsRunning = true;
-        setScore();
+        SetScore();
     }
 
 }
