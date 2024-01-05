@@ -143,8 +143,6 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);  
 
     }
-    
-    //---- 
 
     /// <summary>
     /// Check if the player hit a ceiling
@@ -155,7 +153,6 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(ceilingCheck.position, ceilingCheckRadius, groundLayer);
     }
     
-
     private void Flip()
     {
         isFacingRight = !isFacingRight;
