@@ -17,6 +17,6 @@ public class OrbCollectedUI : MonoBehaviour
 
     private void OrbCollectedUI_OnScoreChanged(object sender, EventArgs e)
     {
-        orbCollectedText.text = $"Orbs Collected: {OrbCollected.Instance.GetScore().ToString()}";
+        orbCollectedText.text = $"Orbs Collected: {OrbCollected.Instance.GetScore()}";
     }
 }
