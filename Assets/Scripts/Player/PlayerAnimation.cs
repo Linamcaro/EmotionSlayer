@@ -14,8 +14,6 @@ public class PlayerAnimation : MonoBehaviour
     private PlayerCombat playerCombat;
     private Rigidbody2D playerRb;
 
-
-
     void Awake()
     {
         playerRb = playerObject.GetComponent<Rigidbody2D>();

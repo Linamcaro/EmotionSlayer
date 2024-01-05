@@ -6,8 +6,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 
-  
-
     private static PlayerHealth _instance;
     public static PlayerHealth Instance
     {
@@ -22,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int currentHealth;
 
     public event EventHandler OnPlayerDied;
-
+    public event EventHandler OnPlayerHealthChanged;
 
     private void Awake()
     {
@@ -42,13 +40,27 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
 
         if(currentHealth <= 0)
         {
             OnPlayerDied?.Invoke(this, EventArgs.Empty);
+            PlayerControls.Instance.OnDisable();
         }
     }
+
+    public int GetPlayerMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public int GetPlayerCurrentHealth()
+    {
+        return currentHealth;
+    }
+
 }
