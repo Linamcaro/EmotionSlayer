@@ -836,6 +836,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2059456876886399878, guid: b157b5f7e0182954eb4ea4ac6b972cbf, type: 3}
   m_PrefabInstance: {fileID: 8990920842867818651}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &786863332 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3235416054721425705, guid: 24bc6975cd1055f4286461f881b6affe, type: 3}
+  m_PrefabInstance: {fileID: 181134469385083230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &802226858
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +854,7 @@ GameObject:
   - component: {fileID: 802226860}
   - component: {fileID: 802226859}
   - component: {fileID: 802226863}
+  - component: {fileID: 802226864}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -968,7 +974,7 @@ Transform:
   m_GameObject: {fileID: 802226858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.9397235, y: 3.0500002, z: -1}
+  m_LocalPosition: {x: 5.9387975, y: 3.0500002, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1008,6 +1014,25 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &802226864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802226858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionMode: 0
+  m_RotationMode: 1
+  m_UpdateMethod: 2
+  m_Targets:
+  - target: {fileID: 786863332}
+    weight: 1
+    radius: 0
 --- !u!1001 &858725125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2384,6 +2409,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: normalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: normalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: normalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: normalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeInDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeOutDuration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeInStartColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeInStartColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeInStartColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeInStartColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeOutStartColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeOutStartColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeOutStartColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672960748298721919, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
+      propertyPath: fadeOutStartColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3125355166162498733, guid: 50533c1ea6407b548b6f646aa34c4515, type: 3}
       propertyPath: m_Name
       value: Enemy
