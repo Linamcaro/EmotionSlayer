@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  currentHealth: 500
+  currentHealth: 10
 --- !u!1001 &318870627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2165,11 +2165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90a80b6376384977b6456c450415992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  touchDamage: 20
+  fadeInDuration: 1
+  fadeOutDuration: 2
+  touchDamage: 1
   attackDamage: 10
-  maxHealth: 20
-  currentHealth: 0
+  touchDuration: 0.3
+  maxHealth: 2
+  currentHealth: 2
   moveSpeed: 3
 --- !u!1001 &181134469385083230
 PrefabInstance:
