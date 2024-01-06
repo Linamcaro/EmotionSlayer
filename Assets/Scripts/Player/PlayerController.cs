@@ -40,6 +40,20 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        PlayerHealth.Instance.OnPlayerDied += PlayerController_OnPlayerDied;
+    }
+
+    private void PlayerController_OnPlayerDied(object sender, EventArgs e)
+    {
+        CapsuleCollider2D capsuleCollider = GetComponent<CapsuleCollider2D>();
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        capsuleCollider.isTrigger = true;
+        rigidBody.bodyType = RigidbodyType2D.Static; 
+
+    }
+
     // Update is called once per frame
     void Update()
     {

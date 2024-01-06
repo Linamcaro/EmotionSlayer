@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        PlayerHealth.Instance.OnPlayerDied += Enemy_OnPlayerDied;
         playerObject = GameObject.FindWithTag("Player");
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
@@ -122,21 +124,26 @@ public class Enemy : MonoBehaviour
         if (distanceToPlayer < 3f)
         {
             //Debug.LogError("Touched!");
-            DamagePlayer(touchDamage);
+            //DamagePlayer(touchDamage);
+
+            PlayerHealth.Instance.TakeDamage(touchDamage);
             canDamagePlayerByTouch = false;
+            hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
         }
     }
 
-    private void DamagePlayer(int damage)
+    /*private void DamagePlayer(int damage)
     {
         if (isDead) return;
 
         PlayerDamage playerHealth = playerObject.GetComponent<PlayerDamage>();
         playerHealth.TakeDamage(damage);
-        playerHealth.LogHealth();
+       playerHealth.LogHealth();
         hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
-        // hitKnockback(playerObject.GetComponent<Rigidbody2D>());
-    }
+       //itKnockback(playerObject.GetComponent<Rigidbody2D>());
+
+
+    }*/
 
     private void hitVisual(SpriteRenderer currentSpriteRenderer)
     {
@@ -197,5 +204,10 @@ public class Enemy : MonoBehaviour
         Destroy(capsuleCollider);
 
         StartCoroutine(FadeOut());
+    }
+
+    private void Enemy_OnPlayerDied(object sender, EventArgs e)
+    {
+        this.enabled = false;
     }
 }
