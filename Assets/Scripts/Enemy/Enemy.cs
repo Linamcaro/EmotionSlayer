@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float fadeOutDuration = 2f;
 
     [Header("DAMAGE")]
-    [SerializeField] public int touchDamage = 2;
+    [SerializeField] public int touchDamage = 1;
     [SerializeField] public int attackDamage = 1;
     
     [Header("STATS")]
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distanceToPlayer < 3f)
+        if (distanceToPlayer < 1f)
         {
             //Debug.LogError("Touched!");
             DamagePlayer(touchDamage);
