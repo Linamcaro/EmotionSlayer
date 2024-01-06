@@ -20,7 +20,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void LogHealth()
     {
-        Debug.LogError("Player Health at" + currentHealth);
+        Debug.Log("Player Health at" + currentHealth);
     }
 
     void Die()

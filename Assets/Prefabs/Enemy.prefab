@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2913016519495122411}
   - component: {fileID: 5015161539791852992}
   - component: {fileID: 1602084912749854260}
-  - component: {fileID: 2672960748298721919}
+  - component: {fileID: 6612319336456801059}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -79,7 +79,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3125355166162498733}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -119,7 +119,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2672960748298721919
+--- !u!114 &6612319336456801059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,10 +128,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3125355166162498733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30aa0068a9b5a584198047d7aedf2a61, type: 3}
+  m_Script: {fileID: 11500000, guid: c90a80b6376384977b6456c450415992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  fadeInDuration: 1
+  fadeOutDuration: 2
+  touchDamage: 1
+  attackDamage: 10
+  touchDuration: 0.3
+  knockBackDuration: 20
+  knockBackForce: 20
+  maxHealth: 2
+  currentHealth: 2
+  moveSpeed: 3
 --- !u!1 &7104141189475251138
 GameObject:
   m_ObjectHideFlags: 0
