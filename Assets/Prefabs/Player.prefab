@@ -162,8 +162,8 @@ MonoBehaviour:
   maxSpeed: 12
   acceleration: 120
   jumpPower: 36
-  groundCheckRadius: 0.5
-  ceilingCheckRadius: 0.5
+  groundCheckRadius: 0.7
+  ceilingCheckRadius: 0.7
   groundDeceleration: 60
   airDeceleration: 30
   groundingForce: -1.5
@@ -274,9 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ea14cff05d208428ff4eb704f848f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: {fileID: 0}
-  attackRange: 0.5
-  enemieLayer:
+  attackPoint: {fileID: 7537347063920083759}
+  attackRange: 1.3
+  swordDamage: 1
+  attackRate: 2
+  nextAttackTime: 0
+  enemyLayer:
     serializedVersion: 2
     m_Bits: 512
 --- !u!1 &6237429979356789519
@@ -304,7 +307,7 @@ Transform:
   m_GameObject: {fileID: 6237429979356789519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.97, y: 0.62, z: 0}
+  m_LocalPosition: {x: 1.99, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -335,7 +338,7 @@ Transform:
   m_GameObject: {fileID: 6331139936677115148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32, y: 2.61, z: 0}
+  m_LocalPosition: {x: 0.32, y: 2.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -366,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 7097624022969460666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.37, y: -1.44, z: 0}
+  m_LocalPosition: {x: 0.37, y: -1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
