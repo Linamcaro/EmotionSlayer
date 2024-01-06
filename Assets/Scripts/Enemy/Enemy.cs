@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
     [Header("DAMAGE")]
     [SerializeField] public int touchDamage = 1;
     [SerializeField] public int attackDamage = 1;
-    
+    [SerializeField] public float touchDuration = 0.5f;
+    [SerializeField] public float knockBackDuration = 20f;
+    [SerializeField] public float knockBackForce = 20f;
+
     [Header("STATS")]
     [SerializeField] public float maxHealth = 20f;
     [SerializeField] private float currentHealth;
@@ -20,6 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float moveSpeed = 5f; // The speed at which the enemy moves   
 
     private bool isDead = false;
+    private bool canDamagePlayerByTouch = true;
     private Rigidbody2D rb;
     private GameObject playerObject;
     private SpriteRenderer spriteRenderer;
@@ -61,6 +65,10 @@ public class Enemy : MonoBehaviour
             isDead = true;
             touchDamage = 0;
             attackDamage = 0;
+        } else
+        {
+            hitVisual(gameObject.GetComponentInChildren<SpriteRenderer>());
+            // hitKnockback(rb);
         }
     }
 
@@ -108,12 +116,14 @@ public class Enemy : MonoBehaviour
     private void TouchPlayer()
     {
         if (isDead) return;
+        if (!canDamagePlayerByTouch) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distanceToPlayer < 2f)
+        if (distanceToPlayer < 3f)
         {
             //Debug.LogError("Touched!");
             DamagePlayer(touchDamage);
+            canDamagePlayerByTouch = false;
         }
     }
 
@@ -124,6 +134,38 @@ public class Enemy : MonoBehaviour
         PlayerDamage playerHealth = playerObject.GetComponent<PlayerDamage>();
         playerHealth.TakeDamage(damage);
         playerHealth.LogHealth();
+        hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
+        // hitKnockback(playerObject.GetComponent<Rigidbody2D>());
+    }
+
+    private void hitVisual(SpriteRenderer currentSpriteRenderer)
+    {
+        currentSpriteRenderer.color = new Color(1f, 0f, 0f, 1f);
+        StartCoroutine(fadeBackToNormal(currentSpriteRenderer));
+    }
+
+    private IEnumerator fadeBackToNormal (SpriteRenderer currentSpriteRenderer)
+    {
+        float elapsedTime = 0f;
+        float fadeDuration = touchDuration;
+        while (elapsedTime < fadeDuration)
+        {
+            float colorStrength = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+            float alpha = currentSpriteRenderer.color.a;
+            currentSpriteRenderer.color = new Color(1f, colorStrength, colorStrength, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        currentSpriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        canDamagePlayerByTouch = true;
+    }
+
+    private void hitKnockback(Rigidbody2D currentRB)
+    {
+        // Calculate the direction from the enemy to the player
+        //Vector2 knockbackDirection = (playerObject.transform.position - rb.transform.position).normalized;
+        Debug.LogError("    hitKnockback: " + currentRB);
+        currentRB.velocity = new Vector2(knockBackForce, knockBackForce);
     }
 
     private void MoveEnemy()

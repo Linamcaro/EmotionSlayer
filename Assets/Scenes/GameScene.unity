@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  currentHealth: 1000
+  currentHealth: 10
 --- !u!1001 &318870627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ Transform:
   m_GameObject: {fileID: 802226858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.943374, y: 3.0500002, z: -1}
+  m_LocalPosition: {x: 5.9433045, y: 3.0500002, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2128,8 +2128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInDuration: 1
   fadeOutDuration: 2
-  touchDamage: 20
+  touchDamage: 1
   attackDamage: 10
+  touchDuration: 0.3
   maxHealth: 2
   currentHealth: 2
   moveSpeed: 3
