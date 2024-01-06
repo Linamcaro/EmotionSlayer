@@ -68,4 +68,9 @@ public class PlayerControls : MonoBehaviour
         return inputActions.Player.Fire.triggered;
     }
 
+    public bool PlayerMenu()
+    {
+        return inputActions.Player.Menu.triggered;
+    }
+
 }
