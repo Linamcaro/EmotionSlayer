@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distanceToPlayer < 1f)
+        if (distanceToPlayer < 2f)
         {
             //Debug.LogError("Touched!");
             DamagePlayer(touchDamage);
