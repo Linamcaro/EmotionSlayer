@@ -30,9 +30,9 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Transform target; // The player's transform
 
-    void Start()
+    void Awake()
     {
-        PlayerHealth.Instance.OnPlayerDied += Enemy_OnPlayerDied;
+        
         playerObject = GameObject.FindWithTag("Player");
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
@@ -206,8 +206,5 @@ public class Enemy : MonoBehaviour
         StartCoroutine(FadeOut());
     }
 
-    private void Enemy_OnPlayerDied(object sender, EventArgs e)
-    {
-        this.enabled = false;
-    }
+    
 }
