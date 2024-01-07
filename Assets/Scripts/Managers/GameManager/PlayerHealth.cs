@@ -16,7 +16,6 @@ public class PlayerHealth : MonoBehaviour
     }
 
     [SerializeField] private int maxHealth;
-
     [SerializeField] private int currentHealth;
 
     public event EventHandler OnPlayerDied;
