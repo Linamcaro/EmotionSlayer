@@ -7,7 +7,6 @@ public class PlayerAnimation : MonoBehaviour
 {
     // reference to parent rigidbody and collisions
     [SerializeField] GameObject playerObject;
-   
     [SerializeField] Animator animator;
 
     private PlayerController playerController;
