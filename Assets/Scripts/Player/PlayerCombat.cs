@@ -76,9 +76,7 @@ public class PlayerCombat : MonoBehaviour
 
     public IEnumerator touched()
     {
-        Debug.Log("Touch delay");
         yield return new WaitForSeconds(touchDelay);
-        Debug.Log("Waited " + Time.deltaTime);
         wasTouched = false;
     }
 
