@@ -15,13 +15,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float touchDuration = 0.5f;
     [SerializeField] public float knockBackDuration = 20f;
     [SerializeField] public float knockBackForce = 20f;
+    [SerializeField] public float moveSpeed = 5f; // The speed at which the enemy moves   
 
     [Header("STATS")]
     [SerializeField] public float maxHealth = 20f;
     [SerializeField] private float currentHealth;
 
     [Header("MOVEMENT")]
-    [SerializeField] public float moveSpeed = 5f; // The speed at which the enemy moves   
+    [SerializeField] public float touchDistance = 3f; // The speed at which the enemy moves   
 
     private bool isDead = false;
     private bool canDamagePlayerByTouch = true;
@@ -119,6 +120,10 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return;
         if (!canDamagePlayerByTouch) return;
+        if (touchDistance <= 0f)
+        {
+            touchDistance = 3f;
+        }
 
         PlayerCombat playerCombat = playerObject.GetComponent<PlayerCombat>();
         if (playerCombat.wasTouched) return;
@@ -127,7 +132,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(playerCombat.touched());
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distanceToPlayer < 3f)
+        if (distanceToPlayer < touchDistance)
         {
             //Debug.LogError("Touched!");
             //DamagePlayer(touchDamage);
@@ -137,19 +142,6 @@ public class Enemy : MonoBehaviour
             hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
         }
     }
-
-    /*private void DamagePlayer(int damage)
-    {
-        if (isDead) return;
-
-        PlayerDamage playerHealth = playerObject.GetComponent<PlayerDamage>();
-        playerHealth.TakeDamage(damage);
-       playerHealth.LogHealth();
-        hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
-       //itKnockback(playerObject.GetComponent<Rigidbody2D>());
-
-
-    }*/
 
     private void hitVisual(SpriteRenderer currentSpriteRenderer)
     {
