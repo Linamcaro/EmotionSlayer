@@ -48,4 +48,12 @@ public class EndGame : MonoBehaviour
     }
 
 
+    public void CleanUP()
+    {
+        Destroy(SoundfxManager.Instance.gameObject);
+        Destroy(OrbCollected.Instance.gameObject);
+        Destroy(PlayerHealth.Instance.gameObject);
+        Destroy(PlayerControls.Instance.gameObject);
+    }
+
 }

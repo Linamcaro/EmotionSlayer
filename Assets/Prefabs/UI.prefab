@@ -1465,6 +1465,8 @@ GameObject:
   - component: {fileID: 128379713457316972}
   - component: {fileID: 2741057036924232620}
   - component: {fileID: 8302500370855078934}
+  - component: {fileID: 3380954008392156863}
+  - component: {fileID: 4589152937677048188}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1560,6 +1562,34 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3380954008392156863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4334045858701457526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9800ab97bfb4544995dd1815f2aeefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 5364393450814266814}
+--- !u!114 &4589152937677048188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4334045858701457526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc05b013958144e82d6a2d74cc6261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverUI: {fileID: 852988244464059017}
+  TitleText: {fileID: 412112222720300726}
+  SubtitleText: {fileID: 9084056633953089635}
 --- !u!1 &4465688806106774545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1772,6 @@ GameObject:
   - component: {fileID: 2059456876886399878}
   - component: {fileID: 7455336774763347504}
   - component: {fileID: 4339774794618117031}
-  - component: {fileID: 4358483315932152437}
   m_Layer: 5
   m_Name: GamePanel
   m_TagString: Untagged
@@ -1785,19 +1814,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbCollectedText: {fileID: 2303118808400946258}
 --- !u!114 &4339774794618117031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4586574442764461116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32f8aa67bb992784383c0b5db2ac2993, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 4405097032431945288}
---- !u!114 &4358483315932152437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1902,7 +1918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &142752378221304121
 RectTransform:
   m_ObjectHideFlags: 0
