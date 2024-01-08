@@ -68,6 +68,10 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    /// <summary>
+    /// Return if player is attacking
+    /// </summary>
+    /// <returns></returns>
     public bool IsAttacking()
     {
         return fire;

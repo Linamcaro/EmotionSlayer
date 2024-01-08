@@ -125,7 +125,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = new Color(targetColor.r, targetColor.g, targetColor.b, 1f);
     }
 
-
+    
     private void TouchPlayer()
     {
         if (isDead) return;

@@ -39,7 +39,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-
+    /// <summary>
+    /// Generate damage on player
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
