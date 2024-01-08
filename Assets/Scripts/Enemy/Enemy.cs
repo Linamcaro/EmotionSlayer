@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
 
     [Header("MOVEMENT")]
     [SerializeField] public float touchDistance = 3f; // The speed at which the enemy moves   
+    [SerializeField] public float aggroRange = 5f;  // Adjust the aggro range as needed
+    //[SerializeField] public float loseAggroRange = 5f;
 
     private bool isDead = false;
     private bool canDamagePlayerByTouch = true;
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
     private GameObject playerObject;
     private SpriteRenderer spriteRenderer;
     private Transform target; // The player's transform
+    private bool isAggro = false;
 
     void Start()
     {
@@ -39,6 +42,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f) ;
+        canDamagePlayerByTouch = true;
 
         if (target == null)
         {
@@ -52,6 +56,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
+        if (distanceToPlayer <= aggroRange)
+        {
+            // Player is within aggro range
+            isAggro = true;
+        }
         MoveEnemy();
         // Attack();
         TouchPlayer();
@@ -132,7 +142,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(playerCombat.touched());
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distanceToPlayer < touchDistance)
+        if (distanceToPlayer <= touchDistance)
         {
             //Debug.LogError("Touched!");
             //DamagePlayer(touchDamage);
@@ -176,6 +186,7 @@ public class Enemy : MonoBehaviour
     private void MoveEnemy()
     {
         if (isDead) return;
+        if (!isAggro) return;
 
         if (target != null)
         {
