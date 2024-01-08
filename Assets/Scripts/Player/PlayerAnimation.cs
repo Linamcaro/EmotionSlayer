@@ -38,6 +38,11 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger("dead");
     }
 
+    private void OnDestroy()
+    {
+        // Unsubscribe from the event or any relevant callbacks
+        PlayerHealth.Instance.OnPlayerDied += PlayerAnimation_OnPlayerDied;
+    }
 
 }
 

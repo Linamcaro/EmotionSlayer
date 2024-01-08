@@ -8,7 +8,7 @@ public class MenuUI : MonoBehaviour
     public GameObject menu;
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void LoadMainMenu()

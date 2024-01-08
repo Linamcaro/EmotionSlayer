@@ -187,6 +187,11 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    private void OnDestroy()
+    {
+        PlayerHealth.Instance.OnPlayerDied -= PlayerController_OnPlayerDied;
+    }
+
 }
 
 public struct FrameInput

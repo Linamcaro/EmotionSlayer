@@ -143,10 +143,7 @@ public class Enemy : MonoBehaviour
         {
 
             PlayerCombat playerCombat = playerObject.GetComponent<PlayerCombat>();
-            /*if(playerCombat.wasTouched) return;
-
-            playerCombat.wasTouched = true;
-            StartCoroutine(playerCombat.touched());*/
+         
 
             float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
             if (distanceToPlayer <= touchDistance)

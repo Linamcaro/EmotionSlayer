@@ -19,4 +19,12 @@ public class OrbCollectedUI : MonoBehaviour
     {
         orbCollectedText.text = $"Orbs Collected: {OrbCollected.Instance.GetScore()}";
     }
+
+
+
+    private void OnDestroy()
+    {
+        // Unsubscribe from the event or any relevant callbacks
+        OrbCollected.Instance.OnScoreChanged += OrbCollectedUI_OnScoreChanged;
+    }
 }

@@ -19,8 +19,12 @@ public class EndGame : MonoBehaviour
     private void Start()
     {
         PlayerHealth.Instance.OnPlayerDied += EndGame_OnPlayerDied;
+        LevelManager.Instance.OnPlayerWins += EndGame_OnPlayerWins;
+    }
 
-
+    private void EndGame_OnPlayerWins(object sender, EventArgs e)
+    {
+        ShowWinner();
     }
 
     private void EndGame_OnPlayerDied(object sender, EventArgs e)
@@ -58,6 +62,13 @@ public class EndGame : MonoBehaviour
         Destroy(OrbCollected.Instance.gameObject);
         Destroy(PlayerHealth.Instance.gameObject);
         Destroy(PlayerControls.Instance.gameObject);
+        Destroy(LevelManager.Instance.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerHealth.Instance.OnPlayerDied -= EndGame_OnPlayerDied;
+        LevelManager.Instance.OnPlayerWins -= EndGame_OnPlayerWins;
     }
 
 }
