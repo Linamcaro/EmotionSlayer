@@ -9,11 +9,13 @@ public class MenuUI : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level 1");
+        HideCursor();
     }
 
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        ShowCursor();
     }
 
     public void QuitGame()
@@ -29,7 +31,20 @@ public class MenuUI : MonoBehaviour
         }else if (PlayerControls.Instance.PlayerMenu())
         {
             menu.SetActive(true);
+            ShowCursor();
         }
+    }
+
+    public void ShowCursor()
+    {
+        Cursor.visible = true; // Show the cursor
+        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+    }
+
+    public void HideCursor()
+    {
+        Cursor.visible = false; // Hide the cursor
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
     }
 
 }

@@ -39,6 +39,7 @@ public class EndGame : MonoBehaviour
         SubtitleText.text = "Keep Trying";
 
         GameOverUI.SetActive(true);
+        ShowCursor();
     }
 
     private void ShowWinner()
@@ -47,6 +48,7 @@ public class EndGame : MonoBehaviour
         SubtitleText.text = "You made it";
 
         GameOverUI.SetActive(true);
+        ShowCursor();
     }
 
 
@@ -63,6 +65,12 @@ public class EndGame : MonoBehaviour
         Destroy(PlayerHealth.Instance.gameObject);
         Destroy(PlayerControls.Instance.gameObject);
         Destroy(LevelManager.Instance.gameObject);
+    }
+
+    public void ShowCursor()
+    {
+        Cursor.visible = true; // Show the cursor
+        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
     }
 
     private void OnDestroy()
