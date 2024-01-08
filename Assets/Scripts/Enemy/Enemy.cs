@@ -24,7 +24,10 @@ public class Enemy : MonoBehaviour
     [Header("MOVEMENT")]
     [SerializeField] public float touchDistance = 3f; // The speed at which the enemy moves   
     [SerializeField] public float aggroRange = 5f;  // Adjust the aggro range as needed
-    //[SerializeField] public float loseAggroRange = 5f;
+                                                    //[SerializeField] public float loseAggroRange = 5f;
+
+    [SerializeField] private float attackRate;
+    [SerializeField] private float nextAttackTime;
 
     private bool isDead = false;
     private bool canDamagePlayerByTouch = true;
@@ -34,7 +37,7 @@ public class Enemy : MonoBehaviour
     private Transform target; // The player's transform
     private bool isAggro = false;
 
-    void Awake()
+    void Start()
     {
         
         playerObject = GameObject.FindWithTag("Player");
@@ -135,21 +138,26 @@ public class Enemy : MonoBehaviour
             touchDistance = 3f;
         }
 
-        PlayerCombat playerCombat = playerObject.GetComponent<PlayerCombat>();
-        if (playerCombat.wasTouched) return;
-
-        playerCombat.wasTouched = true;
-        StartCoroutine(playerCombat.touched());
-
-        float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
-        if (distanceToPlayer <= touchDistance)
+        if (Time.time >= nextAttackTime)
         {
-            //Debug.LogError("Touched!");
-            //DamagePlayer(touchDamage);
 
-            PlayerHealth.Instance.TakeDamage(touchDamage);
-            canDamagePlayerByTouch = false;
-            hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
+            PlayerCombat playerCombat = playerObject.GetComponent<PlayerCombat>();
+            /*if(playerCombat.wasTouched) return;
+
+            playerCombat.wasTouched = true;
+            StartCoroutine(playerCombat.touched());*/
+
+            float distanceToPlayer = Vector3.Distance(transform.position, playerObject.transform.position);
+            if (distanceToPlayer <= touchDistance)
+            {
+
+                PlayerHealth.Instance.TakeDamage(touchDamage);
+                canDamagePlayerByTouch = false;
+                hitVisual(playerObject.GetComponentInChildren<SpriteRenderer>());
+                
+            }
+            nextAttackTime = Time.time + 1f / attackRate;
+
         }
     }
 

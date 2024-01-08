@@ -17,8 +17,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float nextAttackTime;
 
     [Header("TOUCHED")]
-    [SerializeField] public float touchDelay = 1.0f;
-    [SerializeField] public bool wasTouched = false;
+    //[SerializeField] public float touchDelay = 1.0f;
+    //[SerializeField] public bool wasTouched = false;
 
     [SerializeField] private LayerMask enemyLayer;
 
@@ -78,10 +78,10 @@ public class PlayerCombat : MonoBehaviour
     }
 
 
-    public IEnumerator touched()
+   /* public IEnumerator touched()
     {
         yield return new WaitForSeconds(touchDelay);
         wasTouched = false;
-    }
+    }*/
 
 }
