@@ -10,6 +10,8 @@ public class EndGame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TitleText;
     [SerializeField] private TextMeshProUGUI SubtitleText;
 
+    private Boss boss;
+
     private void Awake()
     {
         HidePanel();
@@ -17,6 +19,8 @@ public class EndGame : MonoBehaviour
     private void Start()
     {
         PlayerHealth.Instance.OnPlayerDied += EndGame_OnPlayerDied;
+
+
     }
 
     private void EndGame_OnPlayerDied(object sender, EventArgs e)

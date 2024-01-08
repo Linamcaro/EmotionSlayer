@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float knockBackDuration = 20f;
     [SerializeField] public float knockBackForce = 20f;
     [SerializeField] public float moveSpeed = 5f; // The speed at which the enemy moves   
+    [SerializeField] private float attackRate;
+    [SerializeField] private float nextAttackTime;
+
 
     [Header("STATS")]
     [SerializeField] public float maxHealth = 20f;
@@ -26,9 +29,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float aggroRange = 5f;  // Adjust the aggro range as needed
                                                     //[SerializeField] public float loseAggroRange = 5f;
 
-    [SerializeField] private float attackRate;
-    [SerializeField] private float nextAttackTime;
-
+   
     private bool isDead = false;
     private bool canDamagePlayerByTouch = true;
     private Rigidbody2D rb;
@@ -221,6 +222,11 @@ public class Enemy : MonoBehaviour
         Destroy(capsuleCollider);
 
         StartCoroutine(FadeOut());
+    }
+
+    public float GetEnemyHealth()
+    {
+        return currentHealth;
     }
 
     

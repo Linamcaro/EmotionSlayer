@@ -86,6 +86,8 @@ MonoBehaviour:
   currentHealth: 3
   touchDistance: 5
   aggroRange: 5
+  attackRate: 1
+  nextAttackTime: 0
 --- !u!70 &8497743578573300669
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,8 +120,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2, y: 4}
+  m_Offset: {x: -0.048080444, y: 0}
+  m_Size: {x: 6.327347, y: 6.327347}
   m_Direction: 0
 --- !u!1 &8293649684010336426
 GameObject:
