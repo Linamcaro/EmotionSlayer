@@ -139,12 +139,12 @@ MonoBehaviour:
   knockBackDuration: 20
   knockBackForce: 20
   moveSpeed: 3
+  attackRate: 1
+  nextAttackTime: 0
   maxHealth: 2
   currentHealth: 2
   touchDistance: 3
-  aggroRange: 5
-  attackRate: 1
-  nextAttackTime: 0
+  aggroRange: 10
 --- !u!1 &7104141189475251138
 GameObject:
   m_ObjectHideFlags: 0

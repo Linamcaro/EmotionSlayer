@@ -5325,6 +5325,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8497743578573300669, guid: 242dfd82f887a4fab811f9b0db89592f, type: 3}
+      propertyPath: m_Size.x
+      value: 6.749977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497743578573300669, guid: 242dfd82f887a4fab811f9b0db89592f, type: 3}
+      propertyPath: m_Size.y
+      value: 6.749977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497743578573300669, guid: 242dfd82f887a4fab811f9b0db89592f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2593956
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

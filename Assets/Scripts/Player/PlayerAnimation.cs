@@ -22,7 +22,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Start()
     {
-        PlayerHealth.Instance.OnPlayerDied += PlayerAnimation_OnPlayerDied;
+        if (PlayerHealth.Instance != null)
+        {
+            PlayerHealth.Instance.OnPlayerDied += PlayerAnimation_OnPlayerDied;
+        }
     }
 
     void Update()
@@ -40,9 +43,12 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event or any relevant callbacks
-        PlayerHealth.Instance.OnPlayerDied += PlayerAnimation_OnPlayerDied;
+        if (PlayerHealth.Instance != null)
+        {
+            PlayerHealth.Instance.OnPlayerDied -= PlayerAnimation_OnPlayerDied;
+        }
     }
+
 
 }
 
